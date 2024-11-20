@@ -8,7 +8,7 @@
  ********************************************************************/
 
 import java.util.Arrays;
-
+//Gramt Smith Comp 272
 public class ProblemSolutions {
 
     /**
@@ -22,8 +22,8 @@ public class ProblemSolutions {
      * ascending sort. If the second parameter is provided and is false, a descending
      * sort is performed.
      *
-     * @param values        - int[] array to be sorted.
-     * @param ascending     - if true,method performs an ascending sort, else descending.
+     * @param //values        - int[] array to be sorted.
+     * @param //ascending     - if true,method performs an ascending sort, else descending.
      *                        There are two method signatures allowing this parameter
      *                        to not be passed and defaulting to 'true (or ascending sort).
      */
@@ -37,14 +37,18 @@ public class ProblemSolutions {
         int n = values.length;
 
         for (int i = 0; i < n - 1; i++) {
-
-            // YOU CODE GOES HERE -- COMPLETE THE INNER LOOP OF THIS
-            // "SELECTION SORT" ALGORITHM.
-            // DO NOT FORGET TO ADD YOUR NAME / SECTION ABOVE
-
+            int index = i;
+            for (int j = i + 1; j < n; j++) {
+                if (ascending ? (values[j] < values[index]) : (values[j] > values[index])) {
+                    index = j;
+                }
+            }
+            int temp = values[index];
+            values[index] = values[i];
+            values[i] = temp;
         }
 
-    } // End class selectionSort
+    }
 
 
     /**
