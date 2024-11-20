@@ -227,11 +227,23 @@ public class ProblemSolutions {
 
     public static int numRescueSleds(int[] people, int limit) {
 
-        // YOUR CODE GOES HERE, CONSIDER USING ARRAYS.SORT
-
-        return -1;
-
+        //sort the array
+        Arrays.sort(people);
+        //initialize pointers for lightest & heaviest person and sled count
+        int lightest = 0;
+        int heaviest = people.length - 1;
+        int sledCount = 0;
+        //loop until everyone has a sled
+        while (lightest <= heaviest) {
+            //check if the lightest and heaviest can share a sled
+            if (people[lightest] + people[heaviest] <= limit) {
+                lightest++;//if they can, add to the lightest pointer for the next lightest person
+            }
+            //move heaviest pointer to the next heaviest person and increase sled count
+            heaviest--;
+            sledCount++;
+        }
+        return sledCount;
     }
-
 } // End Class ProblemSolutions
 
