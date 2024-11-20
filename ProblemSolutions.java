@@ -96,6 +96,41 @@ public class ProblemSolutions {
 
     private void mergeDivisbleByKFirst(int arr[], int k, int left, int mid, int right)
     {
+        //calculate size of the halves
+        int leftSide = mid - left + 1;
+        int rightSide = right - mid;
+        //create temp arrays
+        int[] leftArray = new int[leftSide];
+        int[] rightArray = new int[rightSide];
+        //copy data into temp arrays
+        System.arraycopy(arr, left, leftArray, 0, leftSide);
+        System.arraycopy(arr, mid + 1, rightArray, 0, rightSide);
+        //initialize pointers for left & right arrays and merged result in original array
+        int i = 0;
+        int j = 0;
+        int merged = left;
+        // merge remaining elements while keeping order
+        while (i < leftSide && leftArray[i] % k == 0) {
+            arr[merged++] = leftArray[i++];
+        }
+        while (j < rightSide && rightArray[j] % k == 0) {
+            arr[merged++] = rightArray[j++];
+        }
+        while (i < leftSide && j < rightSide) {
+            if (leftArray[i] % k == 0 || (rightArray[j] % k != 0 && leftArray[i] <= rightArray[j])) {
+                arr[merged++] = leftArray[i++];
+            } else {
+                arr[merged++] = rightArray[j++];
+            }
+        }
+        //add remaining elements to left and right arrays if there are any
+        while (i < leftSide) {
+            arr[merged++] = leftArray[i++];
+        }
+        while (j < rightSide) {
+            arr[merged++] = rightArray[j++];
+        }
+
         // YOUR CODE GOES HERE, THIS METHOD IS NO MORE THAN THE STANDARD MERGE PORTION
         // OF A MERGESORT, EXCEPT THE NUMBERS DIVISIBLE BY K MUST GO FIRST WITHIN THE
         // SEQUENCE PER THE DISCUSSION IN THE PROLOGUE ABOVE.
@@ -105,6 +140,7 @@ public class ProblemSolutions {
         // ALLOCATES AUXILIARY DATA STRUCTURES (TEMPORARY ARRAYS). IT WILL BE EASIER
         // TO CODE WITH A SPACE COMPLEXITY OF O(N LOG N), WHICH IS FINE FOR PURPOSES
         // OF THIS PROGRAMMING EXERCISES.
+
 
         return;
 
