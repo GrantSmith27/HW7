@@ -130,20 +130,6 @@ public class ProblemSolutions {
         while (j < rightSide) {
             arr[merged++] = rightArray[j++];
         }
-
-        // YOUR CODE GOES HERE, THIS METHOD IS NO MORE THAN THE STANDARD MERGE PORTION
-        // OF A MERGESORT, EXCEPT THE NUMBERS DIVISIBLE BY K MUST GO FIRST WITHIN THE
-        // SEQUENCE PER THE DISCUSSION IN THE PROLOGUE ABOVE.
-        //
-        // NOTE: YOU CAN PROGRAM THIS WITH A SPACE COMPLEXITY OF O(1) OR O(N LOG N).
-        // AGAIN, THIS IS REFERRING TO SPACE COMPLEXITY. O(1) IS IN-PLACE, O(N LOG N)
-        // ALLOCATES AUXILIARY DATA STRUCTURES (TEMPORARY ARRAYS). IT WILL BE EASIER
-        // TO CODE WITH A SPACE COMPLEXITY OF O(N LOG N), WHICH IS FINE FOR PURPOSES
-        // OF THIS PROGRAMMING EXERCISES.
-
-
-        return;
-
     }
 
 
@@ -194,10 +180,19 @@ public class ProblemSolutions {
 
     public static boolean asteroidsDestroyed(int mass, int[] asteroids) {
 
-        // YOUR CODE GOES HERE, CONSIDER USING ARRAYS.SORT()
-
-        return false;
-
+        //sort asteroids in ascending order
+        Arrays.sort(asteroids);
+        //iterate through the sorted asteroids
+        for (int asteroid : asteroids) {
+            //if planet's mass is less than asteroid's mass, return false
+            if (mass < asteroid) {
+                return false;
+            }
+            //otherwise, destroy the asteroid and gain its mass
+            mass += asteroid;
+        }
+        //when all asteroids are destroyed
+        return true;
     }
 
 
